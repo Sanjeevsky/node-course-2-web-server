@@ -1,6 +1,7 @@
 const express=require('express');
 const hbs=require('hbs');
 const fs=require('fs');
+const port=process.env.PORT || 80;
 
 var app=express();
 hbs.registerPartials(__dirname+'/views/partials');
@@ -19,9 +20,9 @@ app.use((req,res,next)=>{
   next();
 });
 
-app.use((req,res,next)=>{
-  res.render('maintenence.hbs');
-});
+// app.use((req,res,next)=>{
+//   res.render('maintenence.hbs');
+// });
 app.use(express.static(__dirname+'/public'));//MiddleWare
 
 
@@ -56,7 +57,7 @@ app.get('/bad',(req,res)=>
   }
 );
 });
-app.listen(3000,()=>
+app.listen(port,()=>
 {
-  console.log('Server is Up on Port 3000');
+  console.log(`Server is Up on Port ${port}`);
 });
